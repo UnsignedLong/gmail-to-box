@@ -21,7 +21,6 @@ getopts("u:p:F:", \%options) or usage();
 
 my $mail_password = $options{p} || usage();
 my $mail_user = $options{u} || usage();
-my $mail_box = $options{F} || usage();
 
 my $imap = Mail::IMAPClient->new(
   Server   => 'imap.gmail.com',
