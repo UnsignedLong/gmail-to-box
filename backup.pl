@@ -12,6 +12,9 @@ sub usage()
   print STDERR << "EOF";
 -u : IMAP Username
 -p : IMAP Password
+-F : IMAP Folders to backup
+
+Example: $ARGV[0] -u foo.bar\@gmail.com -p secret -F "INBOX SPAM"
 EOF
   exit;
 }
@@ -21,6 +24,9 @@ getopts("u:p:F:", \%options) or usage();
 
 my $mail_password = $options{p} || usage();
 my $mail_user = $options{u} || usage();
+my $folders = $options{F} || usage();
+
+my @boxes = split(' ', $folders);
 
 my $imap = Mail::IMAPClient->new(
   Server   => 'imap.gmail.com',
@@ -37,7 +43,7 @@ if ( !-d 'mail' ) {
   mkdir('mail',0777);
 }
 
-foreach my $box (qw( INBOX )) {
+foreach my $box (@boxes) {
 
   if ( !-d "mail/$box" ) {
     mkdir("mail/$box",0777);
