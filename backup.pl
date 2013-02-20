@@ -14,7 +14,7 @@ sub usage()
 -p : IMAP Password
 -F : IMAP Folders to backup
 
-Example: $ARGV[0] -u foo.bar\@gmail.com -p secret -F "INBOX SPAM"
+Example: perl $0 -u foo.bar\@gmail.com -p secret -F "INBOX SPAM"
 EOF
   exit;
 }
